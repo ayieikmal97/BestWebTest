@@ -22,8 +22,15 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            
+            <center>
+                <h4>Welcome, {{ auth()->user()->name }}</h4>
 
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            </center>
+        <br>
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-white shadow">

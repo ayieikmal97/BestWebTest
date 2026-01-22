@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\ProductController;
 
-Route::get('/', [LoginController::class, 'showLogin'])->name('login');
+Route::get('/', [LoginController::class, 'index'])->name('index');
+Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 Route::middleware('auth')->group(function () {
