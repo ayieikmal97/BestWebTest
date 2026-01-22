@@ -11,10 +11,15 @@ This is a Laravel project scaffolded with **Laravel Breeze**, including RESTful 
 - MySQL
 - Laravel 12.x (latest stable)
 
+## Requirements
+Credentials
+- Email : admin@test.com
+- Password : admin123
 ## Installation
 
 ```bash
 git clone https://github.com/ayieikmal97/bestweb.git
+
 cd bestweb
 
 composer install
