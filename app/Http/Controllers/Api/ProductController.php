@@ -9,6 +9,7 @@ use App\Models\ProductCategory;
 use App\Http\Requests\StoreProductRequest;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ProductExport;
+use OpenApi\Attributes as OA;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,8 @@ class ProductController extends Controller
         $categories=ProductCategory::all();
         return view('dashboard',compact('categories'));
     }
-
+    #[OA\Post(path: '/api/product', summary: 'Create or update product')]
+    #[OA\Response(response: '200', description: 'Success')]
     public function store(StoreProductRequest $request)
     {
         if(isset($request->id)){
@@ -29,7 +31,7 @@ class ProductController extends Controller
 
         return response(['saved'=>1]);
     }
-
+    
     public function create(Request $request)
     {
         $start = $request->input('start', 0);
@@ -85,13 +87,15 @@ class ProductController extends Controller
         ]);
     }
 
-    
+    #[OA\Get(path: '/api/product/{product}', summary: 'Get product detail by ID')]
+    #[OA\Response(response: '200', description: 'Success')]
     public function show($id)
     {
         $product=Product::findOrFail($id);
         return response(['data'=>$product]);
     }
-
+    #[OA\Delete(path: '/api/product/{product}', summary: 'Delete single product')]
+    #[OA\Response(response: '200', description: 'Success')]
     public function destroy($id)
     {
         $product=Product::findOrFail($id);
@@ -104,6 +108,8 @@ class ProductController extends Controller
         return Excel::download(new ProductExport, 'products.xlsx');
     }
 
+    #[OA\Delete(path: '/api/product', summary: 'Delete multiple product')]
+    #[OA\Response(response: '200', description: 'Success')]
     public function bulkDelete(Request $request)
     {
         $ids = $request->ids;

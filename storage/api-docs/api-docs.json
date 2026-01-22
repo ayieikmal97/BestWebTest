@@ -1,0 +1,49 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/product": {
+            "post": {
+                "summary": "Create or update product",
+                "operationId": "f6c6fa48346dd08aae3060e1e8765913",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete multiple product",
+                "operationId": "d648b8a841db7dd26217bee73585e7a6",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/api/product/{product}": {
+            "get": {
+                "summary": "Get product detail by ID",
+                "operationId": "51855639da64fc272eab7ee081a682eb",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete single product",
+                "operationId": "8076e8fe60c38065603af989523ab5df",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    }
+}
