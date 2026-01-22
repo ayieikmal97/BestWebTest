@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use App\Models\User;
 
 class ProductTest extends TestCase
 {
@@ -17,6 +18,10 @@ class ProductTest extends TestCase
     public function test_admin_can_create_product()
     {
         $category = ProductCategory::factory()->create();
+        $user = User::factory()->create();
+
+        
+        $this->actingAs($user, 'sanctum');
 
         $response = $this->postJson('/api/product', [
             'name' => 'Test Product',
@@ -33,6 +38,11 @@ class ProductTest extends TestCase
 
     public function test_product_creation_requires_fields()
     {
+        $user = User::factory()->create();
+
+        
+        $this->actingAs($user, 'sanctum');
+
         $response = $this->postJson('/api/product', []);
         
         $response->assertJsonValidationErrors(['name', 'category_id', 'price']);
@@ -44,6 +54,10 @@ class ProductTest extends TestCase
             'name' => 'Old Name'
         ]);
 
+        $user = User::factory()->create();
+
+        
+        $this->actingAs($user, 'sanctum');
         
         $response = $this->postJson("/api/product", [
             'name' => 'Updated Product',
@@ -69,6 +83,11 @@ class ProductTest extends TestCase
 
     public function test_admin_can_soft_delete_product()
     {
+        $user = User::factory()->create();
+
+        
+        $this->actingAs($user, 'sanctum');
+
         $product = Product::factory()->create();
         
         $this->deleteJson("/api/product/{$product->id}")
@@ -79,6 +98,11 @@ class ProductTest extends TestCase
 
     public function test_admin_can_bulk_delete_products()
     {
+        $user = User::factory()->create();
+
+        
+        $this->actingAs($user, 'sanctum');
+
         $products = Product::factory()->count(3)->create();
         $ids = $products->pluck('id')->toArray();
 
