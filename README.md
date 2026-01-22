@@ -1,6 +1,6 @@
 # Laravel Project
 
-This is a Laravel project scaffolded with **Laravel Breeze**, including RESTful API endpoints for product management and basic authentication.
+Laravel project that using Laravel Sanctum as login authenticator including RESTful API endpoints for product management.
 
 ## Requirements
 
@@ -24,8 +24,6 @@ cd bestweb
 
 composer install
 
-npm install
-
 cp .env.example .env
 
 php artisan key:generate
@@ -33,7 +31,5 @@ php artisan key:generate
 php artisan migrate
 
 php artisan db:seed
-
-npm run dev
 
 php artisan serve
